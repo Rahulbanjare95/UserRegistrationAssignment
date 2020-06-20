@@ -3,6 +3,8 @@ package com.bridgelabz;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.regex.Pattern;
+
 public class UserRegistrationTest {
     @Test
     public void givenFirstName_WhenCorrect_ShouldReturnTrue() {
@@ -71,7 +73,38 @@ public class UserRegistrationTest {
         Assert.assertTrue(isValid);
 
     }
+    @Test
+    public void givenMobile_WithoutSpace_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePhoneNumber("91982423482");
+        Assert.assertFalse(isValid);
+
+    }
+    @Test
+    public void givenMobile_WithlessLength_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePhoneNumber("91982");
+        Assert.assertFalse(isValid);
+
+    }
+    @Test
+    public void givenPassword_WithMin8charchter_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("122abcdefghAAS");
+        Assert.assertTrue(isValid);
+
+    }
+    @Test
+    public void givenPassword_WithLessCharacters_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("zx2A");
+        Assert.assertFalse(isValid);
+
+    }
 
 
 
 }
+
+
+
