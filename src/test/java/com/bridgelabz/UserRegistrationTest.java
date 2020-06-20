@@ -101,6 +101,19 @@ public class UserRegistrationTest {
         Assert.assertFalse(isValid);
 
     }
+    @Test
+    public void givenPassword_WithNoUpperCase_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("zx2");
+        Assert.assertFalse(isValid);
+
+    }
+    @Test
+    public void givenPassword_WithNoUpperCaseButProper_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("zx2asbcz8");
+        Assert.assertFalse(isValid);
+    }
 
 
 
