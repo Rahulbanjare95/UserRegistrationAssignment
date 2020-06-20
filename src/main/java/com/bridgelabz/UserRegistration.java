@@ -44,14 +44,10 @@ public class UserRegistration {
 
     }
 
-    public static final String PASSWORD = "^[0-9a-zA-Z]{8,}$";
-    public static final String PASSWORD_ONEUPPERCASE="[a-zA-Z0-9](?=.*[A-Z]).{8,}$";
-    public static final String PASSWORD_ONENUMERIC="(?=.*[0-9])(?=.*[A-Z]).{8,}$";
+    public static final String PASSWORD = "(?=.*[0-9])(?=.*[A-Z])(?=.*\\d{1})(?=.*[@#$%!]{1}).{8,}";
     public boolean validatePassword(String password) {
-        Pattern pattern = Pattern.compile(PASSWORD);
-        Pattern pattern1 =Pattern.compile(PASSWORD_ONEUPPERCASE);
-        Pattern pattern2=Pattern.compile(PASSWORD_ONENUMERIC);
-        return pattern2.matcher(password).matches();
+        Pattern pattern=Pattern.compile(PASSWORD);
+        return pattern.matcher(password).matches();
 
     }
 

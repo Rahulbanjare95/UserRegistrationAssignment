@@ -90,7 +90,7 @@ public class UserRegistrationTest {
     @Test
     public void givenPassword_WithMin8charchter_ShouldReturnTrue() {
         UserRegistration userRegistration = new UserRegistration();
-        boolean isValid = userRegistration.validatePassword("122abcdefghAAS");
+        boolean isValid = userRegistration.validatePassword("122abcde#fghAAS");
         Assert.assertTrue(isValid);
 
     }
@@ -115,10 +115,10 @@ public class UserRegistrationTest {
         Assert.assertFalse(isValid);
     }
     @Test
-    public void givenPassword_WithNumericCharacter_ShouldReturnTrue() {
+    public void givenPassword_WithNumericCharacter_ShouldReturnFalse() {
         UserRegistration userRegistration = new UserRegistration();
         boolean isValid = userRegistration.validatePassword("AABa12ds");
-        Assert.assertTrue(isValid);
+        Assert.assertFalse(isValid);
     }
     @Test
     public void givenPassword_WithNumericCharacterButNotLength_ShouldReturnFalse() {
