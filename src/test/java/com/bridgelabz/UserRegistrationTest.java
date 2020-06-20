@@ -36,5 +36,34 @@ public class UserRegistrationTest {
         boolean isValid = userRegistration.validateLastName("kum");
         Assert.assertFalse(isValid);
     }
+    @Test
+    public void givenEmail_WhenNoatsymbol_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validateEmail("abcyahoo.com");
+        Assert.assertFalse(isValid);
+
+    }
+    @Test
+    public void givenEmail_WithAtsymbol_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validateEmail("abc@yahoo.com");
+        Assert.assertTrue(isValid);
+
+    }
+    @Test
+    public void givenEmail_WithoutAtSymbol_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validateEmail("@yahoo.com");
+        Assert.assertFalse(isValid);
+
+    }
+    @Test
+    public void givenEmail_WithProper_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validateEmail("abc.qax@yahoo.co.in");
+        Assert.assertTrue(isValid);
+
+    }
+
 
 }
