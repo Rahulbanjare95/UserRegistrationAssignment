@@ -5,10 +5,6 @@ import java.util.regex.Pattern;
 public class UserRegistration {
     boolean match = true;
     public static final String FIRST_NAME_REGEX = "^[A-Z]{1}[A-Za-z]{2,}$";
-    public static final String EMAIL_REGEX_SIMPLEST = "^(.+)@(.+)$";
-    public static final String EMAIL_REGEX_USERNAME = "^[A-Za-z0-9+_.-]+@(.+)$";
-    public static final String EMAIL_REGEX_COMPLETE = "^[A-za-z0-9]+([._+-][0-9a-z]+)@+[A-Za-z0-9]+.[a-z]{2,4}([.][a-z]{2}$)";
-    public static final String PASSWORD_WITH_ALL_CONDITIONS="(?=.*[0-9])(?=.*[A-Z])(?=.*\\d{1})(?=.*[@#$%!]{1}).{8,}";
 
     public boolean validateFirstName(String firstName) {
         Pattern pattern = Pattern.compile(FIRST_NAME_REGEX);
@@ -24,6 +20,9 @@ public class UserRegistration {
         return pattern.matcher(lastName).matches();
     }
 
+    public static final String EMAIL_REGEX_SIMPLEST = "^(.+)@(.+)$";
+    public static final String EMAIL_REGEX_USERNAME = "^[A-Za-z0-9+_.-]+@(.+)$";
+    public static final String EMAIL_REGEX_COMPLETE = "^[A-za-z0-9]+([._+-][0-9a-z]+)@+[A-Za-z0-9]+.[a-z]{2,4}([.][a-z]{2}$)";
 
     public boolean validateEmail(String email) {
         Pattern pattern = Pattern.compile(EMAIL_REGEX_SIMPLEST);
@@ -40,14 +39,19 @@ public class UserRegistration {
     public static final String PHONE_NUMBER = "^[91]{2}[: :][0-9]{10}$";
 
     public boolean validatePhoneNumber(String phonenNumber) {
-        Pattern patternMob = Pattern.compile(PHONE_NUMBER);
-        return patternMob.matcher(phonenNumber).matches();
+        Pattern pattern = Pattern.compile(PHONE_NUMBER);
+        return pattern.matcher(phonenNumber).matches();
 
     }
-    public boolean validatePassword(String password) {
 
-        Pattern patternPass=Pattern.compile(PASSWORD_WITH_ALL_CONDITIONS);
-        return patternPass.matcher(password).matches();
+    public static final String PASSWORD = "^[0-9a-zA-Z]{8,}$";
+    public static final String PASSWORD_ONEUPPERCASE="[a-zA-Z0-9](?=.*[A-Z]).{8,}$";
+    public static final String PASSWORD_ONENUMERIC="(?=.*[0-9])(?=.*[A-Z]).{8,}$";
+    public boolean validatePassword(String password) {
+        Pattern pattern = Pattern.compile(PASSWORD);
+        Pattern pattern1 =Pattern.compile(PASSWORD_ONEUPPERCASE);
+        Pattern pattern2=Pattern.compile(PASSWORD_ONENUMERIC);
+        return pattern2.matcher(password).matches();
 
     }
 
