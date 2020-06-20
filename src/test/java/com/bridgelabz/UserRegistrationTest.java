@@ -114,6 +114,20 @@ public class UserRegistrationTest {
         boolean isValid = userRegistration.validatePassword("zx2asbcz8");
         Assert.assertFalse(isValid);
     }
+    @Test
+    public void givenPassword_WithNumericCharacter_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("AABa12ds");
+        Assert.assertTrue(isValid);
+    }
+    @Test
+    public void givenPassword_WithNumericCharacterButNotLength_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("Aa12");
+        Assert.assertFalse(isValid);
+    }
+
+
 
 
 
