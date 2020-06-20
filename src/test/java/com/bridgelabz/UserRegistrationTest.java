@@ -1,5 +1,4 @@
 package com.bridgelabz;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -46,10 +45,10 @@ public class UserRegistrationTest {
 
     }
     @Test
-    public void givenEmail_WithAtsymbol_ShouldReturnTrue() {
+    public void givenEmail_WithAtsymbol_ShouldReturnFalse() {
         UserRegistration userRegistration = new UserRegistration();
         boolean isValid = userRegistration.validateEmail("abc@yahoo.com");
-        Assert.assertTrue(isValid);
+        Assert.assertFalse(isValid);
 
     }
     @Test
@@ -88,10 +87,10 @@ public class UserRegistrationTest {
 
     }
     @Test
-    public void givenPassword_WithMin8charchter_ShouldReturnTrue() {
+    public void givenPassword_WithAllcharchterexceptSymbol_ShouldReturnFalse() {
         UserRegistration userRegistration = new UserRegistration();
         boolean isValid = userRegistration.validatePassword("122abcdefghAAS");
-        Assert.assertTrue(isValid);
+        Assert.assertFalse(isValid);
 
     }
     @Test
@@ -115,16 +114,28 @@ public class UserRegistrationTest {
         Assert.assertFalse(isValid);
     }
     @Test
-    public void givenPassword_WithNumericCharacter_ShouldReturnTrue() {
+    public void givenPassword_WithNumericCharacter_ShouldReturnFalse() {
         UserRegistration userRegistration = new UserRegistration();
         boolean isValid = userRegistration.validatePassword("AABa12ds");
-        Assert.assertTrue(isValid);
+        Assert.assertFalse(isValid);
     }
     @Test
     public void givenPassword_WithNumericCharacterButNotLength_ShouldReturnFalse() {
         UserRegistration userRegistration = new UserRegistration();
         boolean isValid = userRegistration.validatePassword("Aa12");
         Assert.assertFalse(isValid);
+    }
+    @Test
+    public void givenPassword_WithNoSpecialCharacter_ShouldReturnFalse() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("Aa124assd");
+        Assert.assertFalse(isValid);
+    }
+    @Test
+    public void givenPassword_WithProperFormat_ShouldReturnTrue() {
+        UserRegistration userRegistration = new UserRegistration();
+        boolean isValid = userRegistration.validatePassword("Aa124a$ssd");
+        Assert.assertTrue(isValid);
     }
 
 
