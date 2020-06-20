@@ -35,4 +35,12 @@ public class UserRegistration {
 
 
     }
+    public static final String PHONE_NUMBER="^[91]{2}[: :][0-9]{10}";
+    public boolean validatePhoneNumber(String phonenNumber) {
+        Pattern pattern = Pattern.compile(phonenNumber);
+        return pattern.matcher(phonenNumber).matches();
+
+    }
+
+
 }
